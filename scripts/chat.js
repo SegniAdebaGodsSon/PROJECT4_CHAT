@@ -8,6 +8,7 @@ class Chatroom{
         this.room = room;
         this.username = username;
         this.chats = db.collection('chats');
+        this.unsub;
     }
 
     async addChat(message){
@@ -26,7 +27,7 @@ class Chatroom{
     }
 
     getChats(callback){                              // callback function is for the function we'll use to the UI
-        this.chats                              
+        this.unsub = this.chats                              
             .where('room', '==', this.room)           // complex query to get the changes of only the current room we're in
             .orderBy('created_at')                      
             .onSnapshot(snapshot => {
@@ -37,14 +38,36 @@ class Chatroom{
                 })
             });
     }
+
+    updateName(username){
+        this.username = username;
+        console.log('username updated 😁'); 
+    }
     
+    updateRoom(room){
+        this.room = room;                           // but the listner is still listening on the previous/initial one if it's called before changing the room
+        console.log('room updated 😉');
+        if(this.unsub){                             // unsubscribes from changes from the previous room 
+            this.unsub();
+        }          
+                                                    // IF WE WANT A NEW LISTNER FOR THE NEW ROOM, WE NEED TO CALL THE 'getChats()' METHOD
+    }
     
 }
 
 
+
 const chatroom = new Chatroom('general', 'shaun');
 
-chatroom.getChats( data => {
+chatroom.getChats(data => {
     console.log(data);
 });
 
+setTimeout(() => {
+    chatroom.updateRoom('gaming');
+    chatroom.updateName('ermias');
+    chatroom.getChats(data => { 
+        console.log(data);
+    });
+    chatroom.addChat('Hi, I\'m Ermias');
+}, 3000);
