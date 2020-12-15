@@ -22,3 +22,11 @@
     font-size: 0.7em;
     color: #999;
 }
+
+.update-msg{
+    text-align: center;
+    margin: 20px auto;
+    border-width: 2px;
+    border-color: #43d9be;
+    box-shadow: #43d9be 2px 2px 3px;
+}

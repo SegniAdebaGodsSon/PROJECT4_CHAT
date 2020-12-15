@@ -41,7 +41,8 @@ class Chatroom{
 
     updateName(username){
         this.username = username;
-        console.log('username updated 😁'); 
+        console.log('username updated 😁');
+        localStorage.setItem('username', username); 
     }
     
     updateRoom(room){
