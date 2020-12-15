@@ -67,6 +67,23 @@
 
     </div>
 
+    
+        <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+        <script>
+         
+          var firebaseConfig = {
+            apiKey: "AIzaSyD3DcVjhp8cSdvVF6A-pW2m7QM0jhc7QcA",
+            authDomain: "live-chat-170ee.firebaseapp.com",
+            projectId: "live-chat-170ee",
+            storageBucket: "live-chat-170ee.appspot.com",
+            messagingSenderId: "1053146543034",
+            appId: "1:1053146543034:web:41c506b74611fd37f76383"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          const db = firebase.firestore();
+        </script>
 
     <script src="./scripts/chat.js"></script>
     <script src="./scripts/ui.js"></script>
